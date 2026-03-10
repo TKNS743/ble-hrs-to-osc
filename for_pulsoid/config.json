@@ -1,0 +1,15 @@
+{
+  "osc": {
+    "server_ip": "127.0.0.1",
+    "server_port": 9000,
+    "address": "/avatar/parameters/TakLabs/"
+  },
+  "connection": {
+    "timeout": 20.0,
+    "max_retries": 5,
+    "retry_delay": 3,
+    "scan_timeout": 10,
+    "scan_retry_interval": 5,
+    "maintain_interval": 1
+  }
+}
