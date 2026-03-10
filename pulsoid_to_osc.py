@@ -1,3 +1,7 @@
+# Copyright (c) 2026 takuu-o
+# Copyright (c) 2026 Utaha Takanashi
+# Released under the MIT License.
+
 import asyncio
 import json
 import os
@@ -68,7 +72,7 @@ def initialize_config(config_file: str = "config.json") -> dict:
 def get_pulsoid_token() -> str:
     """
     Pulsoid トークンを取得する。
-    優先順位: 環境変数 PULSOID_ACCESS_TOKEN > code/pulsoid_token.txt > config.json
+    優先順位: 環境変数 PULSOID_ACCESS_TOKEN > 同じフォルダの pulsoid_token.txt > config.json
     """
     # 1. 環境変数
     token = os.environ.get("PULSOID_ACCESS_TOKEN", "").strip()
@@ -76,7 +80,7 @@ def get_pulsoid_token() -> str:
         return token
 
     # 2. トークン用ファイル（1行目だけ。JSON を触らなくてよい）
-    # `pulsoid_to_osc.py` と同じフォルダ（code/）に置く
+    # `pulsoid_to_osc.py` と同じフォルダに置く
     path = Path(__file__).resolve().parent / PULSOID_TOKEN_FILENAME
     if path.exists():
         try:
@@ -156,7 +160,7 @@ async def pulsoid_loop():
         print("次のいずれかで設定してください（JSON を触らなくてOK）:")
         print(f"  1. 環境変数: PULSOID_ACCESS_TOKEN")
         print(
-            f"  2. code\\{PULSOID_TOKEN_FILENAME} を作り、1行目にトークンだけ書く"
+            f"  2. {PULSOID_TOKEN_FILENAME} をこの .py と同じフォルダに作り、1行目にトークンだけ書く"
         )
         print("  3. config.json の pulsoid.access_token に書く")
         return
@@ -199,7 +203,7 @@ async def pulsoid_loop():
         except asyncio.CancelledError:
             raise
         except Exception as e:
-                print(f"Pulsoid 接続エラー: {e}")
+            print(f"Pulsoid 接続エラー: {e}")
             retry_count += 1
 
             if max_retries and retry_count > max_retries:

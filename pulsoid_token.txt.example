@@ -1,2 +1,2 @@
-ここにPulsoidのアクセストークンを1行で貼り付けて、このファイルを pulsoid_token.txt にリネームしてください
+ここにPulsoidのアクセストークンを1行で貼り付けて、このファイルを pulsoid_token.txt にリネームし、pulsoid_to_osc.py と同じフォルダに置いてください
 
